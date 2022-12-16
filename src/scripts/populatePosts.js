@@ -1,0 +1,76 @@
+// https://gist.github.com/crazy4groovy/65e97b035c4fc7fdb6982c96538c29dc
+//
+
+import { path, writeFileSync } from "fs";
+import parseCsv from "csv-parse/sync";
+import slugify from "slugify";
+// import marked from 'https://cdn.skypack.dev/marked';
+
+const destFolder = "./src/pages/blog";
+
+async function readSheet(
+  key,
+  sheetName = "Sheet1",
+  format = "csv" /* "json" not recommended! */
+) {
+  const url = `https://docs.google.com/spreadsheets/d/${key}/gviz/tq?tqx=out:${format}&sheet=${sheetName}`;
+  return fetch(url).then((r) => r.text());
+}
+
+const postsCsv = await readSheet(
+  "1r_kZ7V8w-yKg3DP4mc4LyqDGn69KufXvltM4QIDZaS8",
+  "Posts"
+);
+
+const posts = await parseCsv(postsCsv);
+//console.log(posts);
+
+posts.shift(); // remove header row
+
+const mds = posts.map((p) => {
+  // Note: must change these vars, according to your spreadsheet columns!
+  let [
+    ts,
+    title,
+    heroUrl = "",
+    pubDate,
+    contentMD = "",
+    slug = "",
+    authName = "",
+    tags = "",
+  ] = p;
+
+  // Note: process the fields as per required
+  heroUrl = heroUrl.split(",")[0];
+  pubDate = new Date(pubDate.split("/").reverse().join("/").replace(" ", ", "))
+    .toLocaleString("eng-ca", { hour12: false })
+    .replace(", ", " ")
+    .replace("24:00:00", "00:00:00");
+  console.log("Loaded from Google Sheets:", { slug, title, pubDate });
+
+  //const contentHTML = marked(contentMD)
+  //console.log({ ts, title, heroUrl, pubDate, contentMD, contentHTML, slug, authName});
+
+  const fname = (slug || slugify(title, { lower: true, strict: true })) + ".md";
+  const postFileMD = `---
+title: "${title.replace(/"/g, '\\"')}"
+slug: ${slug}
+pubDate: ${pubDate}
+heroImage: ${heroUrl}
+tags: ${tags
+    ?.split(", ")
+    ?.filter(Boolean)
+    ?.map((t) => `\n- ${t}`)
+    ?.join("")}
+${authName ? `author: ${authName}` : ""}
+---
+
+${heroUrl ? `<img src="${heroUrl}" class="hero-image"/>\n` : ""}
+
+${contentMD.replace(/\\n/g, "\n")}
+`;
+
+  // console.log(postFileMD);
+
+  writeFileSync(path.join(destFolder, fname), postFileMD, "utf8");
+});
