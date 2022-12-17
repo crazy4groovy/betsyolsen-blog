@@ -5,25 +5,22 @@ const { title, description, imgSrc, imgSrcAlt } = Astro.props;
 ---
 
 <header>
-  <div id="site-header">
-    <div class="mug" style={{ backgroundImage: `url("${imgSrc}")` }}>
-      <a href="/home">
-        <img src="./images/white-text-logo.png" />
-      </a>
-    </div>
-    <div class="body">
-      <nav>
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/about">About</NavLink>
-        <NavLink href="/blog">Blog</NavLink>
-        <NavLink href="https://twitter.com/bestyolsen" target="_blank"
-          >Twitter</NavLink
-        >
-      </nav>
-      <h2>{title}</h2>
-      <div class="description">
-        <Paragraphs text={description} />
-      </div>
+  <div class="mug" style={{ backgroundImage: `url("${imgSrc}")` }}>
+    <a href="/">
+      <img src="./images/white-text-logo.png" />
+    </a>
+  </div>
+  <div class="body">
+    <nav>
+      <NavLink href="/">Home</NavLink>
+      <NavLink href="/about-me">About Me</NavLink>
+      <NavLink href="/work-with-me">Work With Me</NavLink>
+      <NavLink href="/blog">Blog</NavLink>
+      <!-- <NavLink href="https://twitter.com/bestyolsen" target="_blank">Twitter</NavLink> -->
+    </nav>
+    <h2>{title}</h2>
+    <div class="description">
+      <Paragraphs text={description} />
     </div>
   </div>
 </header>
@@ -31,9 +28,6 @@ const { title, description, imgSrc, imgSrcAlt } = Astro.props;
 <style>
   header {
     margin: 0;
-  }
-
-  #site-header {
     display: flex;
     flex-wrap: wrap;
   }

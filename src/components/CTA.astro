@@ -10,12 +10,12 @@ const {
 
 <div class="wrapper">
   <div class="container">
-    <div>
+    <div class="image">
       <img src={imgSrc} alt="logo" />
     </div>
-    <div>
+    <div class="description">
       <h3>{title}</h3>
-      <p>{description}</p>
+      {description && <p>{description}</p>}
       <a href={buttonLink}>{buttonLabel}</a>
     </div>
   </div>
@@ -34,16 +34,26 @@ const {
     display: flex;
     flex-wrap: wrap;
   }
-  .container img {
-    width: 100%;
-  }
-  .container div {
+  .container .image {
+    text-align: center;
     flex: 1;
+    padding: 1rem;
+    min-width: 300px;
+  }
+  .container .image img {
+    max-width: 100%;
+    display: inline;
+  }
+  .container .description {
+    flex: 2;
     padding: 1rem;
     min-width: 200px;
   }
   .container h3 {
     text-align: left;
+  }
+  .container p {
+    padding-top: 2px;
   }
   .container a {
     display: block;
@@ -55,5 +65,9 @@ const {
     margin-top: 1rem;
     padding: .5rem;
     text-align: center;
+    transition: .1s transform;
+  }
+  .container a:hover {
+    transform: scale(1.02);
   }
 </style>
