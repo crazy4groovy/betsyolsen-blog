@@ -1,0 +1,59 @@
+---
+const {
+  imgSrc = "/images/zhang-kaiyv-drip-unsplash-300x200.jpg",
+  title = "Start today.",
+  description = "Schedule a FREE 45 minute Consultation to see if coaching is right for you.",
+  buttonLabel = "Sign up now",
+  buttonLink = "https://betsyolsen.as.me/",
+} = Astro.props;
+---
+
+<div class="wrapper">
+  <div class="container">
+    <div>
+      <img src={imgSrc} alt="logo" />
+    </div>
+    <div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <a href={buttonLink}>{buttonLabel}</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .wrapper {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 5rem;
+    background-color: var(--gray-2);
+  }
+  .container {
+    width: min(92vw, 600px);
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .container img {
+    width: 100%;
+  }
+  .container div {
+    flex: 1;
+    padding: 1rem;
+    min-width: 200px;
+  }
+  .container h3 {
+    text-align: left;
+  }
+  .container a {
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #eee;
+    border: 1px solid var(--green-4);
+    background-color: var(--green-5);
+    margin-top: 1rem;
+    padding: .5rem;
+    text-align: center;
+  }
+</style>

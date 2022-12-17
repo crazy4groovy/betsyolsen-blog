@@ -1,0 +1,8 @@
+---
+let { text } = Astro.props;
+if (!Array.isArray(text)) {
+  text = [text]
+}
+---
+
+{text.map((p: string) => <p>{p}</p>)}

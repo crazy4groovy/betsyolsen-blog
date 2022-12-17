@@ -1,24 +1,65 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../config';
+import NavLink from "./NavLink.astro";
+import Paragraphs from "./Paragraphs.astro";
+const { title, description, imgSrc, imgSrcAlt } = Astro.props;
 ---
 
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="https://twitter.com/bestyolsen" target="_blank">Twitter</HeaderLink>
-	</nav>
+  <div id="site-header">
+    <div class="mug" style={{ backgroundImage: `url("${imgSrc}")` }}>
+      <a href="/home">
+        <img src="./images/white-text-logo.png" />
+      </a>
+    </div>
+    <div class="body">
+      <nav>
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/about">About</NavLink>
+        <NavLink href="/blog">Blog</NavLink>
+        <NavLink href="https://twitter.com/bestyolsen" target="_blank"
+          >Twitter</NavLink
+        >
+      </nav>
+      <h2>{title}</h2>
+      <div class="description">
+        <Paragraphs text={description} />
+      </div>
+    </div>
+  </div>
 </header>
+
 <style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
+  header {
+    margin: 0;
+  }
+
+  #site-header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .mug {
+    flex: 2;
+    min-width: 200px;
+    height: min(800px, 160vw);
+    background-position: center center;
+    background-size: cover;
+  }
+  .mug img {
+    padding-top: 1rem;
+    width: 50%;
+    margin: auto;
+  }
+
+  .body {
+    flex: 3;
+    padding: min(2rem, 4vw);
+  }
+  .body h2 {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .body :global(p) {
+    padding: 1rem;
+  }
 </style>
