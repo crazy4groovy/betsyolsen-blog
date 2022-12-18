@@ -1,24 +1,22 @@
 ---
 import Paragraphs from "./Paragraphs.astro";
 
-const { title, description } = Astro.props;
+let { title, description } = Astro.props;
+title = title.replace(/\n/g, "<br/>");
 ---
 
 <div class="wrapper">
   <div class="container">
-    <div class="title"><h2>{title}</h2></div>
+    <div class="title"><h2 set:html={title} /></div>
     <div class="body"><Paragraphs text={description} /></div>
   </div>
 </div>
 
 <style>
   .wrapper {
-    min-height: min(800px, 160vw);
-    margin: 8rem 2rem 0 2rem;
-
+    margin: 2rem;
     padding: 4vw;
-    padding-top: 10vw;
-    border-top: 1px solid #ccc;
+    padding-top: 6vw;
   }
   .container {
     display: flex;
@@ -44,7 +42,7 @@ const { title, description } = Astro.props;
     flex: 3;
     padding: min(2rem, 4vw);
     padding-top: 0;
-    min-width: 350px;
+    min-width: 300px;
   }
   .body :global(p) {
     padding: 1rem;

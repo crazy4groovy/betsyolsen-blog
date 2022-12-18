@@ -4,38 +4,70 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Section from "../components/Section.astro";
 import CTA from "../components/CTA.astro";
+import Strip from "../components/Strip.astro";
+import Testimonials from "../components/Testimonials.astro";
 import BadgesForTLCS from "../components/BadgesForTLCS.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
-const headerTitle =
-  "I've been there, I will help you unlock your own power to get through it.";
+const headerTitle = "Ready to Feel Better?\nYou're in the right place!";
 
 const headerDescription = [
-  `Hi! I am Betsy Olsen.`,
-  `I'm a Certified Life Coach, through The Life Coach School. I am a member of The Church of Jesus Christ of Latter-day Saints, a mother of 2 awesome boys, and a wife to an amazing man.`,
-  `I know what it's like to be so discouraged, unhappy, and desperate that you feel like you'll never come out of it.`,
-  `You wonder why you're there because looking from the outside-in, your life is pretty close to the life you imagined and wanted.`,
+  `You looked forward to motherhood, and now you don't quite feel cut out for it. It's much harder than you thought it would be. You have plans to “get on top of things” or to “not yell today”, and then the kids wake up. You know if you could just be happy then you could be the kind of mom you imagined you'd be.`,
+  `I wasn't miserable ALL of the time, just a lot of the time. People would tell me the importance of self-care. Go get a massage. Take a bath. Relax. But I couldn't relax. When I tried, I would just get more worked up about all of the things I needed to do, all of the ways I was failing. A lot of the time, just making the appointments and finding a babysitter, took more effort than I could expend.`,
 ];
 
-const sectionTitle = "I love working with moms who are ready to feel better.";
-const sectionDescription = [`
-They come into my program with just the slightest hope that maybe this will help. It’s fun for me to show them that the change isn’t as difficult or out of reach as they think it is. They learn and understand the reason of WHY they feel so bad, and how to feel better. As they feel better, they become more of who they want to be.`,`I work one-on-one with clients, so they can open up completely and have a safe place to unload all that is weighing them down. I go through it all with them as they decide what they want to keep and what they don’t. I believe you have the answers inside of you, you just need someone to open up to and believe in you, when you don’t believe in yourself. I am that person. I am that safe space.`,`If this intrigues you and you’d like to know more, sign-up for a FREE 45-minute Consultation with me. You will have time to tell me what’s going on for you. I’ll give you a personalized action that will help you right now. And if you are a good fit for my program, I will tell you about how to get in.`];
+const sectionTitle = "What I offer to you is more than\nself-care.";
+const sectionDescription = [
+  `It's actually taking care of your mind, so that those other things can actually be relaxing and fulfill their purpose. It's understanding WHY it's so overwhelming to take time for yourself, and WHY if you love your kids so much you want to get away from them, and WHY when your life looks the way you wanted it to, it feels so bad. When you know the WHY, you can figure out the HOW of feeling better. If you don't know the WHY, you'll keep trying things that don't work, or don't last.`,
+  `When you sign-up to work with me, we will have a weekly video call over Zoom. During the 6-week program, I will also provide you with a workbook, and a weekly video explaining a different mental wellness tool. During our calls we may or may not go over these tools, depending on what will be most beneficial for you. But you will have the workbook and videos to keep for yourself.`,
+];
+
+const sectionTitle2 =
+  "I know you may be nervous to talk to someone about what's going on.";
+const sectionDescription2 = [
+  `What if they ask you questions about things you don't want to talk about? Or try to sell you something you don't want to buy? Or what if you don't know what to say? You know you're unhappy, but what are supposed to talk about?`,
+  `Worry no longer. You don't have to talk about anything you don't want to. I will take care of you in the session. If you're not sure what to say, I will ask questions. If you know what you want to talk about, I will listen.`,
+  `If you don't want coaching beyond this session, no worries! It will be a one-time great experience.`,
+];
+
+const stripDescription = "While working with me, you will feel more confident, happy, and excited about your life and your roles in your life. You will feel empowered to take care of yourself, so that you can take care of the other important people in your life the way you've been wanting to."
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      hr {
+        margin: 5rem;
+        background-color: #ccc;
+        height: var(--border-size-1);
+      }
+    </style>
   </head>
   <body>
     <Header
       title={headerTitle}
-      imgSrc={"/images/mug-wall-closest.jpg"}
+      imgSrc={"/images/deniz-altindas-rocks-unsplash.jpg"}
       description={headerDescription}
     />
     <main>
+      <hr />
       <Section title={sectionTitle} description={sectionDescription} />
-      <CTA title="Book your FREE Consultation now!" description="" />
+      <Strip description={stripDescription} />
+      <CTA
+        title="Sign up now, though, because my calendar fills up fast!"
+        description=""
+        imgSrc="/images/mug-wall-middle-200x300.jpg"
+      />
+      <Section title={sectionTitle2} description={sectionDescription2} />
+      <Testimonials />
+      <CTA
+        title="I only open two weeks at a time, so sign-up before the spots are taken!"
+        description=""
+        buttonLabel="Click here to book a free consultation"
+        imgSrc="/images/mug-laptop-looking-up-300x200.jpg"
+      />
       <BadgesForTLCS />
     </main>
     <Footer />

@@ -1,0 +1,38 @@
+---
+const { description } = Astro.props;
+---
+
+<div class="wrapper">
+  <div class="bg-image"></div>
+  <div class="container">
+    {description}
+  </div>
+</div>
+
+<style>
+  .wrapper {
+    padding: 6vw;
+    background-color: var(--green-1);
+    position: relative;
+  }
+  .bg-image {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    filter: blur(2px) opacity(.3);
+    background-image: url("/images/deniz-altindas-rocks-unsplash.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    color: #444;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+</style>

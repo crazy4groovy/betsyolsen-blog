@@ -1,7 +1,8 @@
 ---
 import NavLink from "./NavLink.astro";
 import Paragraphs from "./Paragraphs.astro";
-const { title, description, imgSrc, imgSrcAlt } = Astro.props;
+let { title, description, imgSrc, imgSrcAlt } = Astro.props;
+title = title.replace(/\n/g, "<br/>");
 ---
 
 <header>
@@ -18,7 +19,7 @@ const { title, description, imgSrc, imgSrcAlt } = Astro.props;
       <NavLink href="/blog">Blog</NavLink>
       <!-- <NavLink href="https://twitter.com/bestyolsen" target="_blank">Twitter</NavLink> -->
     </nav>
-    <h2>{title}</h2>
+    <h2 set:html={title} />
     <div class="description">
       <Paragraphs text={description} />
     </div>

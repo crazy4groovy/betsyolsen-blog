@@ -1,0 +1,66 @@
+---
+const quotes: Record<string, string> = {
+  "Sara M., Ontario":
+    "'Emerging bravely' is a perfectly accurate description of the kind of work Betsy effectively develops with her client. Her open and gentle nature makes discussing faults actually fun! Betsy invites imperfection by being non-judgemental and in turn, creates a safe space for her client to work at being a better partner and a happier individual.",
+  "Robin H., Utah":
+    "Betsy has an incredible ability to focus in on the thoughts that are creating all the drama in my life!  I now see situations in a completely different light.",
+  "Laura E., Ontario":
+    "Betsy was able to lead when I was hesitant and help me feel comfortable and safe and able to open up. When I didn't have words for feelings, Betsy was able to guide me through finding words to describe what I was feeling inside. Even once I was comfortable I was still unaware how much I would open up, but Betsy had this way of sorting through all the words and feelings I had and finding the needle in my haystack of life and leading me to it all while giving me the tools I need to find them myself and deal with them, much like an expert doctor drawing out not only an infection but the root cause of it.",
+};
+---
+
+<div class="wrapper">
+  <div class="container">
+    <h4>Here's what my clients have to say about working with me:</h4>
+    <div class="quotes">
+      {
+        Object.keys(quotes).map((name: string) => {
+          const q = quotes[name];
+          return (
+            <div class="quote">
+              <div class="body">{q}</div>
+              <div class="name">{name}</div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .wrapper {
+    padding: 6vw;
+    background-color: #0f292f;
+    position: relative;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    color: #444;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .container h4 {
+    display: block;
+    width: 100%;
+    max-inline-size: unset;
+    text-align: center;
+    color: #eee;
+  }
+  .quotes {
+    padding-top: 2rem;
+    color: #eee;
+    font-size: .9rem;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .quotes .quote {
+    padding-top: 2rem;
+  }
+  .quotes .quote .name {
+    color: #14a098;
+    font-weight: bold;
+    padding-top: 4px;
+  }
+</style>
