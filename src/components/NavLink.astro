@@ -14,7 +14,6 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 	a.nav {
 		display: inline-block;
 		text-decoration: none;
-		font-family: "Work Sans", sans-serif;
 		font-size: 14px;
 		font-weight: 600;
 		text-transform: uppercase;
@@ -22,7 +21,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 	}
 	a.active {
 		font-weight: 900;
-		text-decoration: none;
 		color: #cb2d6f;
+    transform: scale(1.1);
 	}
 </style>

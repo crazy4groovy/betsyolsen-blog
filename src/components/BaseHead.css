@@ -101,5 +101,7 @@ blockquote {
 }
 
 p {
-  font-family: "Arial", Sans-serif;
+  max-inline-size: none;
+  font-family: "Open Sans", "Arial", Sans-serif;
+  padding: 1rem;
 }

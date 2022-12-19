@@ -4,14 +4,15 @@ const { description } = Astro.props;
 
 <div class="wrapper">
   <div class="bg-image"></div>
-  <div class="container">
+  <p class="container">
     {description}
-  </div>
+  </p>
 </div>
 
 <style>
   .wrapper {
-    padding: 6vw;
+    padding: 4vw;
+    padding-top: max(4vw, 4rem);
     background-color: var(--green-1);
     position: relative;
   }
@@ -22,7 +23,7 @@ const { description } = Astro.props;
     bottom: 0;
     left: 0;
     right: 0;
-    filter: blur(2px) opacity(.3);
+    filter: blur(2px) opacity(0.3);
     background-image: url("/images/deniz-altindas-rocks-unsplash.jpg");
     background-position: center;
     background-repeat: no-repeat;
