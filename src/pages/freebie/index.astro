@@ -1,0 +1,154 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Paragraphs from "../../components/Paragraphs.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../config";
+
+const paragraphs = [
+  `Ready to feel less overwhelmed? Print off the worksheet and watch this 15 minute course. Follow the 4 simple steps that I outline, and feel the weight lift.`,
+  `I know what it's like to feel so overwhelmed, anxious, and unhappy that you feel like you've fallen into a deep hole you can't quite get out of.`,
+  `You don't want to give up all that you're doing, but you also can't keep going on the way you are.`,
+  `In this course, I will teach you how to apply 4 simple steps to feeling less overwhelmed so you can be the person, wife, and mother you want to be.`,
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Stop the Overwhelm!</h1>
+        <hr />
+        <h2>
+          How to Stop the Overwhelm without giving up all of the things you want
+          to do.
+        </h2>
+        <hr />
+        <h3>
+          Insert your name and email to learn how to Feel Less Overwhelmed in
+          <br />
+          4 simple steps
+        </h3>
+
+        <form
+          action="https://betsyolsen.us20.list-manage.com/subscribe/post?u=20772e5ee08c825d11913eac7&id=f1f73f69d4"
+          method="post"
+        >
+          <div class="indicates-required">
+            <span class="asterisk">*</span> indicates required
+          </div>
+          <div class="mc-field-group">
+            <label for="mce-FNAME">Name: <span class="asterisk">*</span></label>
+            <input type="text" name="FNAME" class="required" id="mce-FNAME" />
+          </div>
+          <div class="mc-field-group">
+            <label for="mce-EMAIL"
+              >Email Address: <span class="asterisk">*</span>
+            </label>
+            <input
+              type="email"
+              name="EMAIL"
+              class="required email"
+              id="mce-EMAIL"
+            />
+          </div>
+          <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none">
+            </div>
+            <div
+              class="response"
+              id="mce-success-response"
+              style="display:none"
+            >
+            </div>
+          </div>
+          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input
+              type="text"
+              name="b_20772e5ee08c825d11913eac7_f1f73f69d4"
+              tabindex="-1"
+              value=""
+            />
+          </div>
+          <div class="clear">
+            <input
+              type="submit"
+              value="Get My Free Course"
+              name="subscribe"
+              id="mc-embedded-subscribe"
+              class="button"
+            />
+          </div>
+        </form>
+      </div>
+
+      <Footer />
+    </div>
+
+    <style>
+      .wrapper {
+        width: 100%;
+        padding: 2rem;
+        margin-top: 1rem;
+        background-color: var(--gray-1);
+      }
+      .container {
+        width: min(80vw, 600px);
+        margin: 0 auto;
+      }
+      h1 {
+        display: block;
+        font-size: max(4vw, 3rem);
+        text-align: center;
+        margin-top: 2rem;
+      }
+      h3,
+      input {
+        font-family: "Open Sans", sans-serif;
+      }
+      form {
+        margin: min(2rem, 6vw);
+      }
+      form > div {
+        padding: 1rem;
+      }
+      form label {
+        display: inline-block;
+        width: 15rem;
+        margin-bottom: 1rem;
+      }
+      form input {
+        background-color: #ddd;
+        max-width: 20rem;
+        padding: 1rem;
+      }
+      form input:focus {
+        background-color: #e5e5e5;
+      }
+      form input[type="submit"] {
+        display: block;
+        width: min(200px, 60vh);
+        background-color: pink;
+        text-align: center;
+      }
+      form .asterisk {
+        color: red;
+      }
+      form .indicates-required {
+        font-style: italic;
+      }
+      form .clear {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+      input[type="submit"]:hover {
+        transform: scale(1.02);
+      }
+    </style>
+  </body>
+</html>
