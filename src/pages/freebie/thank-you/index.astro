@@ -1,0 +1,100 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import Footer from "../../../components/Footer.astro";
+import Paragraphs from "../../../components/Paragraphs.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../../config";
+
+const paragraphs = [
+  `Ready to feel less overwhelmed? Print off the worksheet and watch this 15 minute course. Follow the 4 simple steps that I outline, and feel the weight lift.`,
+  `I know what it's like to feel so overwhelmed, anxious, and unhappy that you feel like you've fallen into a deep hole you can't quite get out of.`,
+  `You don't want to give up all that you're doing, but you also can't keep going on the way you are.`,
+  `In this course, I will teach you how to apply 4 simple steps to feeling less overwhelmed so you can be the person, wife, and mother you want to be.`,
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Thank You</h1>
+
+        <iframe
+          class="video-iframe"
+          allowfullscreen=""
+          title="vimeo Video Player"
+          src="https://player.vimeo.com/video/361072086?color&autopause=0&loop=0&muted=0&title=1&portrait=0&byline=0#t="
+        ></iframe>
+
+        <div class="button">
+          <a href="/wp-content/uploads/Freebie-for-Betsy-Olsen_2.pdf"
+            >Download Companion Worksheet</a
+          >
+        </div>
+
+        <Paragraphs text={paragraphs} />
+
+        <div class="call-out">
+          Don't forget to also sign-up for a <a href="https://betsyolsen.as.me/"
+            >Free Intro Session</a
+          >, where I can take you through your individual situation. I've been
+          there, and I will walk you through how to climb out of the hole you
+          can't seem to get out of.
+
+          <div class="button">
+            <a href="https://betsyolsen.as.me/">Free Intro Session</a>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+
+    <style>
+      .wrapper {
+        width: 100%;
+        padding: 2rem;
+        margin-top: 1rem;
+        background-color: var(--gray-1);
+      }
+      .container {
+        width: min(80vw, 600px);
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      .video-iframe {
+        width: 100%;
+        height: max(20vw, 250px);
+        padding: 2rem;
+        margin-top: 2rem;
+      }
+      .button a {
+        display: block;
+        margin: 4rem auto;
+        width: min(200px, 60vh);
+        background-color: pink;
+        text-align: center;
+        padding: 1rem;
+      }
+      a,
+      a:visited {
+        font-family: "Open Sans", sans-serif;
+        color: darkred;
+      }
+      a:hover {
+        text-decoration: none;
+        transform: scale(1.02);
+      }
+      .call-out {
+        border-top: 1px solid lightgray;
+        padding: 3rem;
+        margin-top: 3rem;
+      }
+    </style>
+  </body>
+</html>
