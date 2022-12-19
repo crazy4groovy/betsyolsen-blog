@@ -1,0 +1,29 @@
+---
+import path from "path";
+
+export async function getStaticPaths() {
+  const allArticles = await Astro.glob("./blog/**/*.md");
+  // console.log(allArticles.map((a) => ({ href: a.url, file: a.file })));
+
+  return allArticles.map((a: any) => {
+    const { name } = path.parse(a.file);
+    return {
+      params: { postslug: name },
+      props: { href: a.url },
+    };
+  });
+}
+
+const { href } = Astro.props;
+---
+
+<!-- embed frontmatter data into an element, for the script to fetch out from the client side -->
+<div data-gotohref={href}>Redirecting to {href} ...</div>
+
+<script>
+  const href =
+    document.querySelector<HTMLElement>("[data-href]")?.dataset.gotohref;
+  if (href) {
+    window.location.href = href;
+  }
+</script>
