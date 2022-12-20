@@ -44,6 +44,7 @@ const timeStamp = pubDate
 
       {pubDate && <time>{timeStamp}</time>}
 
+      <div class="hr"></div>
       <hr />
 
       <slot />
@@ -74,6 +75,14 @@ const timeStamp = pubDate
       hr {
         border-top: 1px solid #ddd;
         margin: 1rem 0;
+      }
+      div.hr {
+        color: blue;
+        width: 100%;
+        height: 90px;
+        background-image: url(/images/triple-hearts.jpg);
+        background-position: center center;
+        opacity: 0.8;
       }
       .nav-box {
         display: flex;
