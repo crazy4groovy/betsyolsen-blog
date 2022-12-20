@@ -1,7 +1,7 @@
 // https://gist.github.com/crazy4groovy/65e97b035c4fc7fdb6982c96538c29dc
 //
 
-import path from "path"
+import path from "path";
 import fs from "fs";
 import fetch from "node-fetch";
 import { parse as parseCsv } from "csv-parse/sync";
@@ -41,6 +41,7 @@ const mds = posts.map((p) => {
     authName = "",
     tags = "",
   ] = p;
+  contentMD = contentMD.replace(/\n/g, "\n\n");
 
   // Note: process the fields as per required
   heroUrl = heroUrl.split(",")[0];
@@ -50,11 +51,12 @@ const mds = posts.map((p) => {
     .replace("24:00:00", "00:00:00");
   console.log("Loaded from Google Sheets:", { slug, title, pubDate });
 
-  //const contentHTML = marked(contentMD)
-  //console.log({ ts, title, heroUrl, pubDate, contentMD, contentHTML, slug, authName});
+  // const contentHTML = marked(contentMD)
+  // console.log({ ts, title, heroUrl, pubDate, contentMD, contentHTML, slug, authName});
 
   const fname = (slug || slugify(title, { lower: true, strict: true })) + ".md";
   const postFileMD = `---
+layout: "../../layouts/BlogPost.astro"
 title: "${title.replace(/"/g, '\\"')}"
 slug: ${slug}
 pubDate: ${pubDate}
@@ -66,13 +68,12 @@ tags: ${tags
     ?.join("")}
 ${authName ? `author: ${authName}` : ""}
 ---
-
-${heroUrl ? `<img src="${heroUrl}" class="hero-image"/>\n` : ""}
-
-${contentMD.replace(/\\n/g, "\n")}
+${contentMD.replace(/\\n/g, "\n\n")}
 `;
 
   // console.log(postFileMD);
 
   fs.writeFileSync(path.join(destFolder, fname), postFileMD, "utf8");
+
+  return postFileMD;
 });

@@ -1,6 +1,8 @@
 ---
 import NavLink from "./NavLink.astro";
 import Paragraphs from "./Paragraphs.astro";
+import Nav from "./Nav.astro";
+
 let { title, description, imgSrc, imgSrcAlt } = Astro.props;
 title = title.replace(/\n/g, "<br/>");
 ---
@@ -12,13 +14,8 @@ title = title.replace(/\n/g, "<br/>");
     </a>
   </div>
   <div class="body">
-    <nav>
-      <NavLink href="/">Home</NavLink>
-      <NavLink href="/about-me">About Me</NavLink>
-      <NavLink href="/work-with-me">Work With Me</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
-      <!-- <NavLink href="https://twitter.com/bestyolsen" target="_blank">Twitter</NavLink> -->
-    </nav>
+    <Nav />
+
     <h2 set:html={title} />
     <div class="description">
       <Paragraphs text={description} />

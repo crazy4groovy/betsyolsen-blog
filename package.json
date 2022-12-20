@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "prebuild": "node ./src/scripts/populateBlog.js",
+    "prebuild": "rimraf dist && node ./src/scripts/populateBlog.js",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "csv-parse": "~5.3.3",
+    "rimraf": "^3.0.2",
     "slugify": "~1.6.5"
   }
 }
