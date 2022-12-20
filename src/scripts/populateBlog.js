@@ -44,7 +44,9 @@ const mds = posts.map((p) => {
   contentMD = contentMD.replace(/\n/g, "\n\n");
 
   // Note: process the fields as per required
-  heroUrl = heroUrl.split(",")[0];
+  heroUrl = heroUrl
+    .split(",")[0]
+    ?.replace(new RegExp("https://betsyolsen.com/wp-content"), "");
   pubDate = new Date(pubDate.split("/").reverse().join("/").replace(" ", ", "))
     .toLocaleString("eng-ca", { hour12: false })
     .replace(", ", " ")
@@ -58,9 +60,9 @@ const mds = posts.map((p) => {
   const postFileMD = `---
 layout: "../../layouts/BlogPost.astro"
 title: "${title.replace(/"/g, '\\"')}"
-slug: ${slug}
-pubDate: ${pubDate}
-heroImage: ${heroUrl}
+slug: "${slug}"
+pubDate: "${pubDate}"
+heroImage: "${heroUrl}"
 tags: ${tags
     ?.split(", ")
     ?.filter(Boolean)
