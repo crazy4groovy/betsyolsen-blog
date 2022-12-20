@@ -40,6 +40,7 @@ const timeStamp = new Date(post.frontmatter.pubDate).toLocaleDateString(
     flex-direction: column;
     justify-content: end;
     width: 100%;
+    padding-bottom: 4rem;
   }
   .hero {
     width: 100%;
@@ -53,11 +54,15 @@ const timeStamp = new Date(post.frontmatter.pubDate).toLocaleDateString(
     border-radius: 1rem;
   }
   .body {
-    padding: 2rem;
-    min-height: 165px;
+    padding: 1rem;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   h1 {
     font-size: max(1.4rem, 0.5vw);
+    padding: 2px;
   }
   time {
     font-size: 0.8rem;
