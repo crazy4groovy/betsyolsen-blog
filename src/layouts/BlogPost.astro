@@ -52,6 +52,18 @@ const timeStamp = pubDate
 
     <Footer />
     <style>
+      .nav-box {
+        display: flex;
+        padding: min(2rem, 4vw);
+        padding-right: min(6rem, 4vw);
+      }
+      .nav-box > div {
+        flex: 1;
+      }
+      :global(nav) {
+        max-width: 560px;
+        flex: 1;
+      }
       article {
         max-width: 900px;
         margin: auto;
@@ -84,17 +96,6 @@ const timeStamp = pubDate
         background-image: url(/images/triple-hearts.jpg);
         background-position: center center;
         opacity: 0.8;
-      }
-      .nav-box {
-        display: flex;
-        padding: min(2rem, 4vw);
-      }
-      .nav-box > div {
-        flex: 1;
-      }
-      :global(nav) {
-        max-width: 450px;
-        flex: 1;
       }
     </style>
   </body>
