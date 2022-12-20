@@ -34,10 +34,10 @@ const mds = posts.map((p) => {
   let [
     ts,
     title,
+    slug = "",
     heroUrl = "",
     pubDate,
     contentMD = "",
-    slug = "",
     authName = "",
     tags = "",
   ] = p;

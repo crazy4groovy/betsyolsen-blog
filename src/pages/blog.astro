@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 import BlogCard from "../components/BlogCard.astro";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
@@ -21,7 +20,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead />
     <style>
       ul {
         list-style-type: none;

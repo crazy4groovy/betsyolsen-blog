@@ -42,12 +42,13 @@ const timeStamp = pubDate
 
       {heroImage && <img class="hero" src={heroImage} alt="" />}
 
-      {pubDate && <time>{timeStamp}</time>}
+      {timeStamp && <time>{timeStamp}</time>}
 
       <div class="hr"></div>
       <hr />
 
-      <slot />
+      <slot /><!-- Article Post inserted here -->
+
     </article>
 
     <Footer />
