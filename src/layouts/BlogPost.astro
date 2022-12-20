@@ -1,58 +1,91 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
 export interface Props {
-  content: {
+  frontmatter: {
     title: string;
-    description: string;
+    description?: string;
+    author?: string;
     pubDate?: string;
-    updatedDate?: string;
     heroImage?: string;
     tags?: string[];
   };
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage, tags },
-} = Astro.props;
+  frontmatter: { title, pubDate, heroImage, tags },
+} = Astro.props as Props;
+
+const timeStamp = pubDate
+  ? new Date(pubDate).toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  : null;
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description="Blog Post" />
+  </head>
+
+  <body>
+    <div class="nav-box">
+      <Nav />
+    </div>
+
+    <article>
+      <h1>{title}</h1>
+
+      {heroImage && <img class="hero" src={heroImage} alt="" />}
+
+      {pubDate && <time>{timeStamp}</time>}
+
+      <hr />
+
+      <slot />
+    </article>
+
+    <Footer />
     <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
+      article {
+        max-width: 900px;
+        margin: auto;
+      }
+      img.hero {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        object-position: top;
+      }
+      h1 {
+        max-inline-size: none;
+        padding: 2rem;
+      }
+      time {
+        display: block;
+        text-align: center;
+        color: lightslategray;
+        padding: 1rem;
       }
       hr {
         border-top: 1px solid #ddd;
         margin: 1rem 0;
       }
+      .nav-box {
+        display: flex;
+        padding: min(2rem, 4vw);
+      }
+      .nav-box > div {
+        flex: 1;
+      }
+      :global(nav) {
+        max-width: 450px;
+        flex: 1;
+      }
     </style>
-  </head>
-
-  <body>
-    <Header title={title} />
-    <main>
-      <article>
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        {pubDate && <time>{pubDate}</time>}
-        {
-          updatedDate && updatedDate !== pubDate && (
-            <div>
-              Last updated on <time>{updatedDate}</time>
-            </div>
-          )
-        }
-        <hr />
-
-        <slot />
-
-      </article>
-    </main>
-    <Footer />
   </body>
 </html>
