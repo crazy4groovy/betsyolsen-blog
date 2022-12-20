@@ -1,8 +1,10 @@
 // https://gist.github.com/crazy4groovy/65e97b035c4fc7fdb6982c96538c29dc
 //
 
-import { path, writeFileSync } from "fs";
-import parseCsv from "csv-parse/sync";
+import path from "path"
+import fs from "fs";
+import fetch from "node-fetch";
+import { parse as parseCsv } from "csv-parse/sync";
 import slugify from "slugify";
 // import marked from 'https://cdn.skypack.dev/marked';
 
@@ -72,5 +74,5 @@ ${contentMD.replace(/\\n/g, "\n")}
 
   // console.log(postFileMD);
 
-  writeFileSync(path.join(destFolder, fname), postFileMD, "utf8");
+  fs.writeFileSync(path.join(destFolder, fname), postFileMD, "utf8");
 });

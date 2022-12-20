@@ -1,3 +1,6 @@
+# blog posts
+src/pages/blog/
+
 # build output
 dist/
 
