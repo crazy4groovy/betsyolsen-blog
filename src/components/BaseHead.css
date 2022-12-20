@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  font-family: 'Arial', Sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: auto;
   padding-block: 20px;
   max-width: 1140px;
@@ -50,7 +50,7 @@ nav {
 }
 
 nav, footer {
-  font-family: "Work Sans", Sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 nav a {
