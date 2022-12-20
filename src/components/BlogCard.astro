@@ -29,6 +29,7 @@ const timeStamp = new Date(post.frontmatter.pubDate).toLocaleDateString(
     <div class="body">
       <time datetime={post.frontmatter.pubDate}>{timeStamp}</time>
       <h1 class="title">{post.frontmatter.title}</h1>
+      <div class="read-more">Read More &gt;&gt;</div>
     </div>
   </div>
 </a>
@@ -60,12 +61,19 @@ const timeStamp = new Date(post.frontmatter.pubDate).toLocaleDateString(
   }
   time {
     font-size: 0.8rem;
-    color: pink;
+    color: turquoise;
   }
   h1,
   time {
     text-align: center;
     display: block;
     max-inline-size: none;
+  }
+  .read-more {
+    padding-top: 5px;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.6rem;
+    text-align: center;
+    color: turquoise;
   }
 </style>
