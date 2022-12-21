@@ -7,7 +7,7 @@ const { pathname } = Astro.url;
 const isActive =
   href === pathname ||
   href === pathname.replace(/\/$/, "") ||
-  (href === "/blog" && pathname.startsWith(href));
+  (href === "/blog/1" && pathname.startsWith("/blog/"));
 ---
 
 <a
