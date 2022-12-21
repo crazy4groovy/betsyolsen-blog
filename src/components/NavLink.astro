@@ -10,7 +10,12 @@ const isActive =
   (href === "/blog" && pathname.startsWith(href));
 ---
 
-<a href={href} class:list={["nav", className, { active: isActive }]} {...props}>
+<a
+  href={href}
+  rel="prefetch"
+  class:list={["nav", className, { active: isActive }]}
+  {...props}
+>
   <slot />
 </a>
 <style>
