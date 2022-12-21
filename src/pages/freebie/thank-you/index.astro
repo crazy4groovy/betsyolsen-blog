@@ -17,6 +17,18 @@ const paragraphs = [
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
+    ></script>
+    <script async>
+      setTimeout(() => {
+        confetti.create(null, {
+          resize: true,
+          useWorker: true,
+        })({ particleCount: 200, spread: 200 });
+      }, 1000);
+    </script>
   </head>
   <body>
     <div class="wrapper">
