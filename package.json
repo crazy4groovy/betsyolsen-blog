@@ -12,16 +12,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "0.12.2",
-    "@astrojs/prefetch": "^0.1.1",
-    "@astrojs/rss": "1.2.1",
-    "@astrojs/sitemap": "1.0.0",
-    "astro": "1.6.15",
-    "node-fetch": "3.3.0"
+    "@astrojs/mdx": "~0.12.2",
+    "@astrojs/prefetch": "~0.1.1",
+    "@astrojs/rss": "~2.0.0",
+    "@astrojs/sitemap": "~1.0.0",
+    "astro": "~1.9.1"
   },
   "devDependencies": {
-    "csv-parse": "~5.3.3",
+    "csv-parse": "^5.3.3",
+    "node-fetch": "^3.3.0",
     "rimraf": "^3.0.2",
-    "slugify": "~1.6.5"
+    "slugify": "^1.6.5"
   }
 }

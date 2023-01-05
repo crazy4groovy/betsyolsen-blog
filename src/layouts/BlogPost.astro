@@ -48,7 +48,6 @@ const timeStamp = pubDate
       <hr />
 
       <slot /><!-- Article Post inserted here -->
-
     </article>
 
     <Footer />
@@ -98,6 +97,13 @@ const timeStamp = pubDate
         background-position: center center;
         background-size: contain;
         opacity: 0.8;
+      }
+      :global(article blockquote) {
+        border: none;
+        max-inline-size: none;
+        padding-block: none;
+        border-block: 1px solid lightgray;
+        color: hsl(285deg 100% 26%);
       }
     </style>
   </body>
