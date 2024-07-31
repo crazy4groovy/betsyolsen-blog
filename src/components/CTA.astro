@@ -1,8 +1,8 @@
 ---
 const {
   imgSrc = "/images/zhang-kaiyv-drip-unsplash-300x200.jpg",
-  title = "Start today.",
-  description = "Schedule a FREE 45 minute Consultation to see if coaching is right for you.",
+  title = "Start today!",
+  description = "Book a 30-min session now.",
   buttonLabel = "Sign up now!",
   buttonLink = "https://calendly.com/betsyolsencoaching/30min",
 } = Astro.props;
@@ -48,6 +48,9 @@ const {
     flex: 2;
     padding: 1rem;
     min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .container h3 {
     text-align: left;
