@@ -3,7 +3,7 @@ import BaseHead from "../../../components/BaseHead.astro";
 import Footer from "../../../components/Footer.astro";
 import Paragraphs from "../../../components/Paragraphs.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../../config";
+import { SITE_TITLE, SITE_DESCRIPTION, CALENDLY_URL } from "../../../config";
 
 const paragraphs = [
   `Ready to feel less overwhelmed? Print off the worksheet and watch this 15 minute course. Follow the 4 simple steps that I outline, and feel the weight lift.`,
@@ -52,14 +52,14 @@ const paragraphs = [
 
         <div class="call-out">
           Don't forget to also sign-up for a <a
-            href="https://calendly.com/betsyolsencoaching/30min"
+            href={CALENDLY_URL}
             >Free Intro Session</a
           >, where I can take you through your individual situation. I've been
           there, and I will walk you through how to climb out of the hole you
           can't seem to get out of.
 
           <div class="button">
-            <a href="https://calendly.com/betsyolsencoaching/30min"
+            <a href={CALENDLY_URL}
               >Free Intro Session</a
             >
           </div>
