@@ -26,15 +26,17 @@ const {
 <style>
   .wrapper {
     width: 100%;
-    padding: 1rem;
-    margin-top: 5rem;
-    background-color: var(--gray-2);
+    padding: clamp(2.5rem, 6vw, 4rem) 1rem;
+    margin-top: 4rem;
+    background-color: var(--surface-warm);
+    border-block: 1px solid var(--rule);
   }
   .container {
-    width: min(92vw, 600px);
+    width: min(92vw, 620px);
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
   }
   .container .image {
     text-align: center;
@@ -45,6 +47,7 @@ const {
   .container .image img {
     max-width: 100%;
     display: inline;
+    box-shadow: 0 10px 30px -12px rgb(45 42 42 / 35%);
   }
   .container .description {
     flex: 2;
@@ -64,14 +67,20 @@ const {
     display: block;
     text-decoration: none;
     text-transform: uppercase;
-    color: #eee;
-    border: 1px solid var(--green-4);
-    background-color: var(--green-5);
-    margin-top: 1rem;
-    padding: 0.5rem;
+    letter-spacing: 0.08em;
+    font-size: 0.875rem;
+    color: #fff;
+    border: 1px solid var(--accent-deep);
+    background-color: var(--accent);
+    margin-top: 1.25rem;
+    padding: 0.85rem 1rem;
     text-align: center;
+    transition: background-color 150ms ease, box-shadow 150ms ease,
+      transform 150ms ease;
   }
   .container a:hover {
-    transform: scale(1.02);
+    background-color: var(--accent-deep);
+    box-shadow: 0 8px 18px -8px var(--accent-deep);
+    transform: translateY(-1px);
   }
 </style>

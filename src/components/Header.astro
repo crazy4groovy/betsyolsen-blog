@@ -52,7 +52,22 @@ title = title.replace(/\n/g, "<br/>");
     padding: min(2rem, 4vw);
   }
   .body h2 {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    text-align: left;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  .body h2::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    margin-bottom: 1.5rem;
+    background-color: var(--accent);
+  }
+  .description {
+    max-inline-size: 55ch;
+  }
+  .description :global(p) {
+    padding-inline: 0;
   }
 </style>
