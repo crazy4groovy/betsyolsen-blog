@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "predev": "node ./src/scripts/populateBlog.js",
     "build": "astro build",
     "prebuild": "rimraf dist && node ./src/scripts/populateBlog.js",
     "preview": "astro preview",
