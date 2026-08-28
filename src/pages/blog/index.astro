@@ -1,14 +1,13 @@
 ---
 import BlogPostsPage from "../../components/BlogPostsPage.astro";
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob("./*.{md,mdx}"))
+const posts = Object.values(import.meta.glob("./*.{md,mdx}", { eager: true }))
   // remove posts that are pre-published
   .filter(
-    (a) => new Date(a.frontmatter.pubDate).valueOf() < new Date().valueOf()
+    (a: any) => new Date(a.frontmatter.pubDate).valueOf() < new Date().valueOf()
   )
   .sort(
-    (a, b) =>
+    (a: any, b: any) =>
       new Date(b.frontmatter.pubDate).valueOf() -
       new Date(a.frontmatter.pubDate).valueOf()
   );

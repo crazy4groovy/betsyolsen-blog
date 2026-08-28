@@ -23,14 +23,14 @@ const { posts = [], url } = Astro.props;
       <div class="pagination">
         {
           url?.prev ? (
-            <a href={url.prev} rel="prefetch">
+            <a href={url.prev} data-astro-prefetch>
               ⏪ Previous
             </a>
           ) : null
         }
         {
           url?.next ? (
-            <a href={url.next} rel="prefetch">
+            <a href={url.next} data-astro-prefetch>
               Next ⏩
             </a>
           ) : null

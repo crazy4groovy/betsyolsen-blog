@@ -1,6 +1,9 @@
 # blog posts
 src/pages/blog/
 
+# generated types
+.astro/
+
 # build output
 dist/
 

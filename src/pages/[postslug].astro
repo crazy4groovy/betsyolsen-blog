@@ -1,9 +1,10 @@
 ---
-import path from "path";
+import path from "node:path";
 
 export async function getStaticPaths() {
-  const allArticles = await Astro.glob("./blog/**/*.md");
-  // console.log(allArticles.map((a) => ({ href: a.url, file: a.file })));
+  const allArticles = Object.values(
+    import.meta.glob("./blog/**/*.md", { eager: true })
+  );
 
   return allArticles.map((a: any) => {
     const { name } = path.parse(a.file);
@@ -22,7 +23,7 @@ const { href } = Astro.props;
 
 <script>
   const href =
-    document.querySelector<HTMLElement>("[data-href]")?.dataset.gotohref;
+    document.querySelector<HTMLElement>("[data-gotohref]")?.dataset.gotohref;
   if (href) {
     window.location.href = href;
   }
