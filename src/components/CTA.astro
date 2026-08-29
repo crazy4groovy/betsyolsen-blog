@@ -3,9 +3,9 @@ import { CALENDLY_URL } from "../config";
 
 const {
   imgSrc = "/images/zhang-kaiyv-drip-unsplash-300x200.jpg",
-  title = "Start today!",
-  description = "Book a 30-min session now.",
-  buttonLabel = "Book a session here",
+  title = "Take the next gentle step.",
+  description = "Book a gentle, no-pressure 30-minute consultation.",
+  buttonLabel = "Book your consultation",
   buttonLink = CALENDLY_URL,
 } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const {
 <div class="wrapper">
   <div class="container">
     <div class="image">
-      <img src={imgSrc} alt="logo" loading="lazy" />
+      <img src={imgSrc} alt="Water droplet splashing into rippling water" loading="lazy" />
     </div>
     <div class="description">
       <h3>{title}</h3>
@@ -82,5 +82,9 @@ const {
     background-color: var(--accent-deep);
     box-shadow: 0 8px 18px -8px var(--accent-deep);
     transform: translateY(-1px);
+  }
+  .container a:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
   }
 </style>

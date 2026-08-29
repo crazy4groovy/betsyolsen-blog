@@ -10,6 +10,8 @@
   --rule: #ece2e6;
   --ink: #2d2a2a;
   --ink-strong: #201d1e;
+  --ink-muted: #655d61;
+  --focus: #146b7a;
 }
 
 /*
@@ -19,15 +21,13 @@
  */
 
 html {
-	background-color: hsl(330deg 60% 30%);
-	background-color: #333;
+	background-color: var(--surface-warm);
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
   margin: auto;
-  padding-block: 20px;
-  max-width: 1140px;
+  max-width: 1280px;
   text-align: left;
   background-color: #fff;
   word-wrap: break-word;
@@ -44,10 +44,20 @@ h5,
 h6,
 strong,
 b {
+  color: var(--ink-strong);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Abril Fatface', sans-serif;
   font-weight: 500;
-  color: var(--ink-strong);
   text-align: center;
+  line-height: 1.15;
+  text-wrap: balance;
 }
 
 a {
@@ -65,7 +75,7 @@ nav, footer {
 }
 
 nav a {
-  margin-right: 10px;
+  margin-right: 0;
 }
 
 textarea {
@@ -114,5 +124,17 @@ blockquote {
 p {
   max-inline-size: none;
   font-family: "Open Sans", "Arial", Sans-serif;
-  padding: 1rem;
+  padding: 0;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (min-width: 1281px) {
+  body {
+    margin-block: 2rem;
+    box-shadow: 0 24px 60px rgb(45 42 42 / 12%);
+  }
 }
