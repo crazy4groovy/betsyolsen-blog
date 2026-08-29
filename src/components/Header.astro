@@ -13,7 +13,9 @@ title = title.replace(/\n/g, "<br/>");
     </a>
   </div>
   <div class="body">
-    <Nav />
+    <div class="nav-box">
+      <Nav />
+    </div>
 
     <h1 set:html={title}></h1>
     <div class="description">
@@ -37,10 +39,6 @@ title = title.replace(/\n/g, "<br/>");
     flex-wrap: wrap;
   }
 
-  nav {
-    font-family: "Open Sans", "Arial", Sans-serif;
-  }
-
   .mug {
     flex: 2;
     min-width: 200px;
@@ -58,6 +56,9 @@ title = title.replace(/\n/g, "<br/>");
     flex: 3;
     padding: clamp(2rem, 5vw, 5rem);
     align-self: center;
+  }
+  .body .nav-box {
+    padding: 0;
   }
   .body h1 {
     text-align: left;

@@ -66,16 +66,29 @@ a {
 
 nav {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
   justify-content: space-evenly;
   margin-left: auto;
 }
 
-nav, footer {
+nav,
+footer {
   font-family: 'Work Sans', sans-serif;
 }
 
 nav a {
   margin-right: 0;
+}
+
+.nav-box {
+  display: flex;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
+.nav-box nav {
+  max-width: 560px;
+  flex: 1;
 }
 
 textarea {
