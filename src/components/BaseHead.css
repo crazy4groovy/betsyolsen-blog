@@ -8,8 +8,8 @@
   --accent-deep: #a3204f;
   --surface-warm: #faf6f3;
   --rule: #ece2e6;
-  --ink: #2d2a2a;
-  --ink-strong: #201d1e;
+  --ink: #4a4547;
+  --ink-strong: #3a3638;
   --ink-muted: #655d61;
   --focus: #146b7a;
 }
@@ -128,7 +128,7 @@ pre>code {
 
 blockquote {
   border: 1px solid #999;
-  color: #222;
+  color: var(--ink);
   padding: 2px 0px 2px 20px;
   margin: 0px;
   font-style: italic;

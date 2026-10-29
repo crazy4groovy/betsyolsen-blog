@@ -1,68 +1,258 @@
 ---
-const quotes: Record<string, string> = {
-  "Sara M., Ontario":
-    "'Emerging bravely' is a perfectly accurate description of the kind of work Betsy effectively develops with her client. Her open and gentle nature makes discussing faults actually fun! Betsy invites imperfection by being non-judgemental and in turn, creates a safe space for her client to work at being a better partner and a happier individual.",
-  "Robin H., Utah":
-    "Betsy has an incredible ability to focus in on the thoughts that are creating all the drama in my life!  I now see situations in a completely different light.",
-  "Laura E., Ontario":
-    "Betsy was able to lead when I was hesitant and help me feel comfortable and safe and able to open up. When I didn't have words for feelings, Betsy was able to guide me through finding words to describe what I was feeling inside. Even once I was comfortable I was still unaware how much I would open up, but Betsy had this way of sorting through all the words and feelings I had and finding the needle in my haystack of life and leading me to it all while giving me the tools I need to find them myself and deal with them, much like an expert doctor drawing out not only an infection but the root cause of it.",
-};
+const quotes = [
+  {
+    name: "Sara M., Ontario",
+    text: "'Emerging bravely' is a perfectly accurate description of the kind of work Betsy effectively develops with her client. Her open and gentle nature makes discussing faults actually fun! Betsy invites imperfection by being non-judgemental and in turn, creates a safe space for her client to work at being a better partner and a happier individual.",
+  },
+  {
+    name: "Robin H., Utah",
+    text: "Betsy has an incredible ability to focus in on the thoughts that are creating all the drama in my life! I now see situations in a completely different light.",
+  },
+  {
+    name: "Laura E., Ontario",
+    text: "Betsy was able to lead when I was hesitant and help me feel comfortable and safe and able to open up. When I didn't have words for feelings, Betsy was able to guide me through finding words to describe what I was feeling inside. Even once I was comfortable I was still unaware how much I would open up, but Betsy had this way of sorting through all the words and feelings I had and finding the needle in my haystack of life and leading me to it all while giving me the tools I need to find them myself and deal with them, much like an expert doctor drawing out not only an infection but the root cause of it.",
+  },
+];
 ---
 
-<div class="wrapper">
-  <div class="container">
-    <h4>Here's what my clients have to say about working with me:</h4>
-    <div class="quotes">
+<section class="reviews" aria-roledescription="carousel" aria-label="Client reviews">
+  <div class="reviews__inner">
+    <h2>Here's what my clients have to say about working with me</h2>
+    <div class="stage">
       {
-        Object.keys(quotes).map((name: string) => {
-          const q = quotes[name];
-          return (
-            <div class="quote">
-              <p class="body">{q}</p>
-              <div class="name">{name}</div>
-            </div>
-          );
-        })
+        quotes.map((quote, index) => (
+          <blockquote class:list={["quote", { "is-active": index === 0 }]} data-quote>
+            <p><span class="mark" aria-hidden="true">“</span>{quote.text}</p>
+            <footer>{quote.name}</footer>
+          </blockquote>
+        ))
       }
     </div>
+    <div class="controls">
+      <button type="button" data-prev aria-label="Previous review">Previous</button>
+      <div class="dots" role="tablist" aria-label="Choose a review">
+        {
+          quotes.map((quote, index) => (
+            <button
+              type="button"
+              role="tab"
+              data-dot={index}
+              aria-label={`Show review from ${quote.name}`}
+              aria-selected={index === 0 ? "true" : "false"}
+              class:list={{ "is-active": index === 0 }}
+            />
+          ))
+        }
+      </div>
+      <button type="button" data-next aria-label="Next review">Next</button>
+    </div>
   </div>
-</div>
+</section>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>(".reviews");
+
+  sections.forEach((section) => {
+    const quotes = Array.from(section.querySelectorAll<HTMLElement>("[data-quote]"));
+    const dots = Array.from(section.querySelectorAll<HTMLButtonElement>("[data-dot]"));
+    const prev = section.querySelector<HTMLButtonElement>("[data-prev]");
+    const next = section.querySelector<HTMLButtonElement>("[data-next]");
+    if (!quotes.length) return;
+
+    let index = 0;
+    let timer = 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const show = (nextIndex: number) => {
+      const scrollY = window.scrollY;
+      index = (nextIndex + quotes.length) % quotes.length;
+      quotes.forEach((quote, quoteIndex) => {
+        quote.classList.toggle("is-active", quoteIndex === index);
+      });
+      dots.forEach((dot, dotIndex) => {
+        const active = dotIndex === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      // A shorter review shrinks the page. If the old scroll position is
+      // past the new bottom, the browser jumps to the footer. Keep the
+      // review itself in view instead.
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const sectionTop = scrollY + section.getBoundingClientRect().top;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const pinned = Math.min(scrollY, Math.max(0, sectionBottom - window.innerHeight + 24));
+      window.scrollTo(0, Math.min(pinned, Math.max(0, maxScroll)));
+    };
+
+    const start = () => {
+      window.clearInterval(timer);
+      if (reducedMotion || quotes.length < 2) return;
+      timer = window.setInterval(() => show(index + 1), 7000);
+    };
+
+    const bind = (button: HTMLButtonElement | null, onClick: () => void) => {
+      if (!button) return;
+      // A mouse click would focus the button and scroll it into view after
+      // the review changes height. Keyboard focus still works.
+      button.addEventListener("mousedown", (event) => event.preventDefault());
+      button.addEventListener("click", () => {
+        onClick();
+        start();
+      });
+    };
+
+    bind(prev, () => show(index - 1));
+    bind(next, () => show(index + 1));
+    dots.forEach((dot) => bind(dot, () => show(Number(dot.dataset.dot))));
+
+    section.addEventListener("mouseenter", () => window.clearInterval(timer));
+    section.addEventListener("mouseleave", start);
+    section.addEventListener("focusin", () => window.clearInterval(timer));
+    section.addEventListener("focusout", start);
+    start();
+  });
+</script>
 
 <style>
-  .wrapper {
-    padding: 6vw;
-    padding-top: max(4vw,4rem);
-    padding-bottom: max(4vw,4rem);
-    background-color: #0f292f;
+  .reviews {
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 3rem);
+    background: #d7e4ea;
+    color: var(--ink);
+    overflow-anchor: none;
+  }
+
+  .reviews__inner {
+    width: min(42rem, 100%);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reviews h2 {
+    width: 100%;
+    max-inline-size: none;
+    margin: 0 auto 1.5rem;
+    color: var(--ink-strong);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .stage {
     position: relative;
+    width: 100%;
+    min-height: 11rem;
   }
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    color: #444;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  .container h4 {
+
+  blockquote.quote {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
-    max-inline-size: unset;
+    max-inline-size: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
     text-align: center;
-    color: #eee;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms ease;
   }
-  .quotes {
-    padding-top: 2rem;
-    color: #eee;
-    font-size: .9rem;
-    font-style: italic;
-    font-weight: normal;
+
+  .quote.is-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
   }
-  .quotes .quote {
-    padding-top: 2rem;
+
+  .quote p {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.05rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.7;
   }
-  .quotes .quote .name {
-    color: #14a098;
-    font-weight: bold;
-    padding-top: 4px;
+
+  .mark {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--accent);
+    font-family: "Abril Fatface", serif;
+    font-size: 3.25rem;
+    line-height: 1;
+  }
+
+  .quote footer {
+    display: inline-block;
+    margin-top: 1.35rem;
+    padding-top: 0.85rem;
+    border-top: 2px solid var(--accent);
+    color: #3d6d78;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    margin-top: 1.75rem;
+  }
+
+  .controls [data-prev] {
+    justify-self: end;
+    margin-right: 0.75rem;
+  }
+
+  .controls [data-next] {
+    justify-self: start;
+    margin-left: 0.75rem;
+  }
+
+  .controls button {
+    min-height: 2.75rem;
+    padding: 0 0.35rem;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .controls button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  .dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .dots button {
+    width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+    border-radius: 0;
+    background: radial-gradient(circle, rgb(61 57 59 / 35%) 0.32rem, transparent 0.34rem);
+  }
+
+  .dots button.is-active {
+    background: radial-gradient(circle, #3d6d78 0.32rem, transparent 0.34rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .quote {
+      transition: none;
+    }
   }
 </style>
